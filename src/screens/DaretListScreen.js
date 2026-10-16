@@ -104,16 +104,10 @@ export const DaretListScreen = ({ navigation }) => {
   if (loading) {
     return (
       <View
-        style={[
-          styles.centerContainer,
-          { backgroundColor: theme.bg },
-        ]}
+        style={[styles.centerContainer, { backgroundColor: theme.bg }]}
       >
         <View
-          style={[
-            styles.loadingBox,
-            { backgroundColor: theme.card },
-          ]}
+          style={[styles.loadingBox, { backgroundColor: theme.card }]}
         >
           <Text style={[styles.loadingText, { color: theme.subText }]}>
             Chargement...
@@ -131,7 +125,7 @@ export const DaretListScreen = ({ navigation }) => {
         translucent
       />
 
-      {/* ============ HEADER ============ */}
+      {/* HEADER */}
       <View style={styles.header}>
         <View style={{ flex: 1 }}>
           <Text style={[styles.headerTitle, { color: theme.text }]}>
@@ -158,7 +152,7 @@ export const DaretListScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* ============ FILTRES ============ */}
+      {/* FILTRES */}
       <View style={styles.filterContainer}>
         {filters.map((f) => {
           const isActive = filterStatus === f.key;
@@ -170,9 +164,7 @@ export const DaretListScreen = ({ navigation }) => {
               style={[
                 styles.filterBtn,
                 {
-                  backgroundColor: isActive
-                    ? COLORS.primary
-                    : theme.card,
+                  backgroundColor: isActive ? COLORS.primary : theme.card,
                   borderColor: isActive
                     ? COLORS.primary
                     : theme.track || '#e5e7eb',
@@ -211,7 +203,7 @@ export const DaretListScreen = ({ navigation }) => {
         })}
       </View>
 
-      {/* ============ LISTE ============ */}
+      {/* LISTE */}
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
@@ -332,18 +324,14 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
           },
         ]}
       >
-        {/* Bande colorée gauche */}
         <View
           style={[
             styles.statusLine,
-            {
-              backgroundColor: isActive ? COLORS.primary : '#ef4444',
-            },
+            { backgroundColor: isActive ? COLORS.primary : '#ef4444' },
           ]}
         />
 
         <View style={styles.cardContent}>
-          {/* Header carte */}
           <View style={styles.cardHeader}>
             <View style={{ flex: 1 }}>
               <View style={styles.cardTitleRow}>
@@ -355,11 +343,7 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
                 </Text>
                 {isOverdue && (
                   <View style={styles.overduePill}>
-                    <AlertCircle
-                      size={10}
-                      color="#dc2626"
-                      strokeWidth={2.8}
-                    />
+                    <AlertCircle size={10} color="#dc2626" strokeWidth={2.8} />
                     <Text style={styles.overduePillText}>Retard</Text>
                   </View>
                 )}
@@ -370,18 +354,14 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
                   style={[
                     styles.statusDot,
                     {
-                      backgroundColor: isActive
-                        ? '#10b981'
-                        : '#ef4444',
+                      backgroundColor: isActive ? '#10b981' : '#ef4444',
                     },
                   ]}
                 />
                 <Text
                   style={[
                     styles.statusText,
-                    {
-                      color: isActive ? '#10b981' : '#ef4444',
-                    },
+                    { color: isActive ? '#10b981' : '#ef4444' },
                   ]}
                 >
                   {isActive ? 'En cours' : 'Pausée'}
@@ -396,31 +376,20 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
               ]}
             >
               <Text
-                style={[
-                  styles.amountBadgeValue,
-                  { color: COLORS.primary },
-                ]}
+                style={[styles.amountBadgeValue, { color: COLORS.primary }]}
               >
                 {daret.monthlyAmount}
               </Text>
               <Text
-                style={[
-                  styles.amountBadgeUnit,
-                  { color: COLORS.primary },
-                ]}
+                style={[styles.amountBadgeUnit, { color: COLORS.primary }]}
               >
                 DH/mois
               </Text>
             </View>
           </View>
 
-          {/* Stats */}
           <View style={styles.cardStats}>
-            <StatItem
-              label="Membres"
-              value={members.length}
-              theme={theme}
-            />
+            <StatItem label="Membres" value={members.length} theme={theme} />
             <View style={styles.statDivider} />
             <StatItem
               label="Tours"
@@ -436,38 +405,21 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
             />
           </View>
 
-          {/* Prochain bénéficiaire + actions */}
-          <View
-            style={[
-              styles.nextSection,
-              { backgroundColor: theme.bg },
-            ]}
-          >
+          <View style={[styles.nextSection, { backgroundColor: theme.bg }]}>
             <View style={styles.nextLeft}>
-              <Trophy
-                size={13}
-                color={COLORS.primary}
-                strokeWidth={2.4}
-              />
+              <Trophy size={13} color={COLORS.primary} strokeWidth={2.4} />
               {nextRecipient ? (
                 <Text
                   style={[styles.nextText, { color: theme.subText }]}
                   numberOfLines={1}
                 >
                   Prochain :{' '}
-                  <Text
-                    style={{
-                      color: COLORS.primary,
-                      fontWeight: '900',
-                    }}
-                  >
+                  <Text style={{ color: COLORS.primary, fontWeight: '900' }}>
                     {nextRecipient.name}
                   </Text>
                 </Text>
               ) : (
-                <Text
-                  style={[styles.nextText, { color: theme.subText }]}
-                >
+                <Text style={[styles.nextText, { color: theme.subText }]}>
                   Cycle terminé
                 </Text>
               )}
@@ -476,33 +428,19 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
             <View style={styles.actionsRow}>
               <TouchableOpacity
                 onPress={onToggle}
-                style={[
-                  styles.miniBtn,
-                  { backgroundColor: theme.card },
-                ]}
+                style={[styles.miniBtn, { backgroundColor: theme.card }]}
                 activeOpacity={0.7}
               >
                 {isActive ? (
-                  <Pause
-                    size={14}
-                    color={theme.subText}
-                    strokeWidth={2.4}
-                  />
+                  <Pause size={14} color={theme.subText} strokeWidth={2.4} />
                 ) : (
-                  <Play
-                    size={14}
-                    color={COLORS.primary}
-                    strokeWidth={2.4}
-                  />
+                  <Play size={14} color={COLORS.primary} strokeWidth={2.4} />
                 )}
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={onDelete}
-                style={[
-                  styles.miniBtn,
-                  { backgroundColor: '#fee2e2' },
-                ]}
+                style={[styles.miniBtn, { backgroundColor: '#fee2e2' }]}
                 activeOpacity={0.7}
               >
                 <Trash2 size={14} color="#dc2626" strokeWidth={2.4} />
@@ -517,14 +455,9 @@ const DaretListItem = ({ daret, theme, onPress, onDelete, onToggle, index }) => 
 
 const StatItem = ({ label, value, theme, accent }) => (
   <View style={styles.statItem}>
-    <Text style={[styles.statLabel, { color: theme.subText }]}>
-      {label}
-    </Text>
+    <Text style={[styles.statLabel, { color: theme.subText }]}>{label}</Text>
     <Text
-      style={[
-        styles.statValue,
-        { color: accent || theme.text },
-      ]}
+      style={[styles.statValue, { color: accent || theme.text }]}
       numberOfLines={1}
     >
       {value}
@@ -562,10 +495,7 @@ export const CreateDaretScreen = ({ navigation }) => {
 
   const handleAddMember = () => {
     if (memberName.trim()) {
-      setMembers([
-        ...members,
-        { id: generateId(), name: memberName.trim() },
-      ]);
+      setMembers([...members, { id: generateId(), name: memberName.trim() }]);
       setMemberName('');
     }
   };
@@ -606,10 +536,10 @@ export const CreateDaretScreen = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={[styles.container, { backgroundColor: theme.bg }]}
     >
-      {/* ============ HEADER ============ */}
+      {/* HEADER */}
       <View style={styles.createHeader}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -623,9 +553,7 @@ export const CreateDaretScreen = ({ navigation }) => {
           <Text style={[styles.createHeaderTitle, { color: theme.text }]}>
             Nouvelle Daret
           </Text>
-          <Text
-            style={[styles.createHeaderStep, { color: theme.subText }]}
-          >
+          <Text style={[styles.createHeaderStep, { color: theme.subText }]}>
             Étape {step} sur 2
           </Text>
         </View>
@@ -633,7 +561,7 @@ export const CreateDaretScreen = ({ navigation }) => {
         <View style={{ width: 40 }} />
       </View>
 
-      {/* ============ PROGRESSION ============ */}
+      {/* PROGRESSION */}
       <View style={styles.progressWrapper}>
         <View
           style={[
@@ -642,10 +570,7 @@ export const CreateDaretScreen = ({ navigation }) => {
           ]}
         >
           <Animated.View
-            style={[
-              styles.progressFill,
-              { width: progressWidth },
-            ]}
+            style={[styles.progressFill, { width: progressWidth }]}
           />
         </View>
 
@@ -668,8 +593,7 @@ export const CreateDaretScreen = ({ navigation }) => {
               style={[
                 styles.progressStepLabel,
                 {
-                  color:
-                    step >= 1 ? theme.text : theme.subText,
+                  color: step >= 1 ? theme.text : theme.subText,
                   fontWeight: step >= 1 ? '900' : '600',
                 },
               ]}
@@ -692,8 +616,7 @@ export const CreateDaretScreen = ({ navigation }) => {
               style={[
                 styles.progressStepLabel,
                 {
-                  color:
-                    step >= 2 ? theme.text : theme.subText,
+                  color: step >= 2 ? theme.text : theme.subText,
                   fontWeight: step >= 2 ? '900' : '600',
                 },
               ]}
@@ -704,12 +627,13 @@ export const CreateDaretScreen = ({ navigation }) => {
         </View>
       </View>
 
+      {/* CONTENU SCROLLABLE */}
       <ScrollView
         contentContainerStyle={styles.formContainer}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        {/* ============ ÉTAPE 1 ============ */}
+        {/* ÉTAPE 1 */}
         {step === 1 && (
           <View>
             <View style={styles.stepHeader}>
@@ -719,23 +643,16 @@ export const CreateDaretScreen = ({ navigation }) => {
                   { backgroundColor: COLORS.primary + '15' },
                 ]}
               >
-                <Sparkles
-                  size={20}
-                  color={COLORS.primary}
-                  strokeWidth={2.4}
-                />
+                <Sparkles size={20} color={COLORS.primary} strokeWidth={2.4} />
               </View>
               <Text style={[styles.stepTitle, { color: theme.text }]}>
                 Informations
               </Text>
-              <Text
-                style={[styles.stepSubtitle, { color: theme.subText }]}
-              >
+              <Text style={[styles.stepSubtitle, { color: theme.subText }]}>
                 Donne un nom à ta Daret et définis la cotisation mensuelle.
               </Text>
             </View>
 
-            {/* Nom */}
             <Text style={[styles.inputLabel, { color: theme.subText }]}>
               NOM DE LA DARET
             </Text>
@@ -759,7 +676,6 @@ export const CreateDaretScreen = ({ navigation }) => {
               onBlur={() => setFocusedInput(null)}
             />
 
-            {/* Montant */}
             <Text style={[styles.inputLabel, { color: theme.subText }]}>
               COTISATION MENSUELLE (DH)
             </Text>
@@ -806,9 +722,9 @@ export const CreateDaretScreen = ({ navigation }) => {
           </View>
         )}
 
-        {/* ============ ÉTAPE 2 ============ */}
+        {/* ÉTAPE 2 — input simple + FlatList */}
         {step === 2 && (
-          <View>
+          <View style={{ flex: 1 }}>
             <View style={styles.stepHeader}>
               <View
                 style={[
@@ -821,23 +737,17 @@ export const CreateDaretScreen = ({ navigation }) => {
               <Text style={[styles.stepTitle, { color: theme.text }]}>
                 Membres
               </Text>
-              <Text
-                style={[styles.stepSubtitle, { color: theme.subText }]}
-              >
-                Ajoute au moins 2 membres. L'ordre d'ajout détermine
-                l'ordre de passage.
+              <Text style={[styles.stepSubtitle, { color: theme.subText }]}>
+                Ajoute au moins 2 membres. L'ordre d'ajout détermine l'ordre de
+                passage.
               </Text>
             </View>
 
-            {/* Nom du membre + bouton ajouter */}
-            <Text style={[styles.inputLabel, { color: theme.subText }]}>
-              NOM DU MEMBRE
-            </Text>
-            <View style={styles.inputWithBtn}>
+            {/* INPUT SIMPLE */}
+            <View style={styles.simpleInputRow}>
               <TextInput
                 style={[
-                  styles.input,
-                  styles.inputFlex,
+                  styles.simpleInput,
                   {
                     backgroundColor: theme.card,
                     color: theme.text,
@@ -847,7 +757,7 @@ export const CreateDaretScreen = ({ navigation }) => {
                         : theme.track || '#e5e7eb',
                   },
                 ]}
-                placeholder="Ex : Amine"
+                placeholder="Nom du membre"
                 placeholderTextColor={theme.subText + '80'}
                 value={memberName}
                 onChangeText={setMemberName}
@@ -862,7 +772,7 @@ export const CreateDaretScreen = ({ navigation }) => {
                 disabled={!memberName}
                 activeOpacity={0.85}
                 style={[
-                  styles.addMemberBtnWrapper,
+                  styles.simpleAddBtn,
                   !memberName && { opacity: 0.5 },
                 ]}
               >
@@ -870,14 +780,14 @@ export const CreateDaretScreen = ({ navigation }) => {
                   colors={['#006233', '#004d25']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
-                  style={styles.addMemberBtn}
+                  style={styles.simpleAddBtnInner}
                 >
                   <Plus size={20} color="#fff" strokeWidth={3} />
                 </LinearGradient>
               </TouchableOpacity>
             </View>
 
-            {/* Compteur */}
+            {/* Compteur + cagnotte */}
             {members.length > 0 && (
               <View style={styles.memberCountRow}>
                 <View
@@ -886,33 +796,22 @@ export const CreateDaretScreen = ({ navigation }) => {
                     { backgroundColor: COLORS.primary + '15' },
                   ]}
                 >
-                  <Users
-                    size={12}
-                    color={COLORS.primary}
-                    strokeWidth={2.6}
-                  />
+                  <Users size={12} color={COLORS.primary} strokeWidth={2.6} />
                   <Text
                     style={[
                       styles.memberCountText,
                       { color: COLORS.primary },
                     ]}
                   >
-                    {members.length} membre
-                    {members.length > 1 ? 's' : ''}
+                    {members.length} membre{members.length > 1 ? 's' : ''}
                   </Text>
                 </View>
                 <Text
-                  style={[
-                    styles.memberPotPreview,
-                    { color: theme.subText },
-                  ]}
+                  style={[styles.memberPotPreview, { color: theme.subText }]}
                 >
                   Cagnotte :{' '}
                   <Text
-                    style={{
-                      color: COLORS.primary,
-                      fontWeight: '900',
-                    }}
+                    style={{ color: COLORS.primary, fontWeight: '900' }}
                   >
                     {(
                       parseFloat(monthlyAmount || 0) * members.length
@@ -923,54 +822,75 @@ export const CreateDaretScreen = ({ navigation }) => {
               </View>
             )}
 
-            {/* Liste */}
+            {/* LISTE DES MEMBRES */}
             {members.length > 0 && (
-              <View
-                style={[
-                  styles.membersList,
-                  { backgroundColor: theme.card },
-                ]}
-              >
-                {members.map((member, idx) => (
-                  <View
-                    key={member.id}
-                    style={[
-                      styles.memberItem,
-                      {
-                        backgroundColor: theme.bg,
-                        borderLeftColor: COLORS.primary,
-                      },
-                    ]}
-                  >
-                    <View style={styles.memberItemLeft}>
-                      <View style={styles.memberAvatar}>
-                        <Text style={styles.memberAvatarText}>
-                          {idx + 1}
+              <View style={styles.membersListWrapper}>
+                <FlatList
+                  data={members}
+                  keyExtractor={(item) => item.id}
+                  scrollEnabled={false}
+                  showsVerticalScrollIndicator={false}
+                  ItemSeparatorComponent={() => (
+                    <View style={{ height: 6 }} />
+                  )}
+                  renderItem={({ item: member, index: idx }) => (
+                    <View
+                      style={[
+                        styles.memberItem,
+                        {
+                          backgroundColor: theme.card,
+                          borderLeftColor: COLORS.primary,
+                        },
+                      ]}
+                    >
+                      <View style={styles.memberItemLeft}>
+                        <View style={styles.memberAvatar}>
+                          <Text style={styles.memberAvatarText}>
+                            {idx + 1}
+                          </Text>
+                        </View>
+                        <Text
+                          style={[
+                            styles.memberItemText,
+                            { color: theme.text },
+                          ]}
+                          numberOfLines={1}
+                        >
+                          {member.name}
                         </Text>
                       </View>
-                      <Text
-                        style={[
-                          styles.memberItemText,
-                          { color: theme.text },
-                        ]}
-                        numberOfLines={1}
+
+                      <TouchableOpacity
+                        onPress={() => handleRemoveMember(member.id)}
+                        style={styles.removeBtn}
+                        activeOpacity={0.7}
                       >
-                        {member.name}
-                      </Text>
+                        <X size={16} color="#dc2626" strokeWidth={2.8} />
+                      </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                      onPress={() => handleRemoveMember(member.id)}
-                      style={styles.removeBtn}
-                      activeOpacity={0.7}
-                    >
-                      <X size={16} color="#dc2626" strokeWidth={2.8} />
-                    </TouchableOpacity>
-                  </View>
-                ))}
+                  )}
+                  ListFooterComponent={
+                    members.length < 2 ? (
+                      <Text
+                        style={{
+                          fontSize: 11,
+                          fontWeight: '600',
+                          color: theme.subText,
+                          textAlign: 'center',
+                          marginTop: 10,
+                        }}
+                      >
+                        Ajoute encore {2 - members.length} membre
+                        {2 - members.length > 1 ? 's' : ''} pour créer la
+                        Daret
+                      </Text>
+                    ) : null
+                  }
+                />
               </View>
             )}
 
-            {/* Boutons */}
+            {/* Boutons bas */}
             <View style={styles.stepButtonsRow}>
               <TouchableOpacity
                 onPress={() => setStep(1)}
@@ -980,11 +900,7 @@ export const CreateDaretScreen = ({ navigation }) => {
                 ]}
                 activeOpacity={0.7}
               >
-                <ArrowLeft
-                  size={16}
-                  color={theme.text}
-                  strokeWidth={2.6}
-                />
+                <ArrowLeft size={16} color={theme.text} strokeWidth={2.6} />
                 <Text
                   style={[styles.secondaryBtnText, { color: theme.text }]}
                 >
@@ -1008,11 +924,7 @@ export const CreateDaretScreen = ({ navigation }) => {
                   end={{ x: 1, y: 0 }}
                   style={styles.primaryBtn}
                 >
-                  <CheckCircle2
-                    size={18}
-                    color="#fff"
-                    strokeWidth={2.8}
-                  />
+                  <CheckCircle2 size={18} color="#fff" strokeWidth={2.8} />
                   <Text style={styles.primaryBtnText}>Créer</Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -1033,28 +945,18 @@ const styles = StyleSheet.create({
   loadingBox: { padding: 20, borderRadius: 14 },
   loadingText: { fontSize: 14, fontWeight: '600' },
 
-  /* ============ HEADER ============ */
+  /* HEADER */
   header: {
     paddingTop:
-      Platform.OS === 'android'
-        ? (StatusBar.currentHeight || 0) + 20
-        : 60,
+      Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 20 : 60,
     paddingHorizontal: 20,
     paddingBottom: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  headerTitle: {
-    fontSize: 26,
-    fontWeight: '900',
-    letterSpacing: -0.8,
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    fontWeight: '600',
-    marginTop: 3,
-  },
+  headerTitle: { fontSize: 26, fontWeight: '900', letterSpacing: -0.8 },
+  headerSubtitle: { fontSize: 12, fontWeight: '600', marginTop: 3 },
   addBtnWrapper: {
     borderRadius: 14,
     overflow: 'hidden',
@@ -1072,7 +974,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  /* ============ FILTRES ============ */
+  /* FILTRES */
   filterContainer: {
     flexDirection: 'row',
     paddingHorizontal: 20,
@@ -1088,11 +990,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1.5,
   },
-  filterText: {
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: -0.2,
-  },
+  filterText: { fontSize: 12, fontWeight: '800', letterSpacing: -0.2 },
   filterCount: {
     paddingHorizontal: 7,
     paddingVertical: 1,
@@ -1100,18 +998,12 @@ const styles = StyleSheet.create({
     minWidth: 20,
     alignItems: 'center',
   },
-  filterCountText: {
-    fontSize: 10,
-    fontWeight: '900',
-  },
+  filterCountText: { fontSize: 10, fontWeight: '900' },
 
-  /* ============ LISTE ============ */
-  listContent: {
-    paddingHorizontal: 20,
-    paddingBottom: 40,
-  },
+  /* LISTE */
+  listContent: { paddingHorizontal: 20, paddingBottom: 40 },
 
-  /* ============ CARTE ============ */
+  /* CARTE */
   card: {
     borderRadius: 18,
     marginBottom: 12,
@@ -1123,15 +1015,8 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 3,
   },
-  statusLine: {
-    width: 5,
-    height: '100%',
-  },
-  cardContent: {
-    flex: 1,
-    padding: 16,
-  },
-
+  statusLine: { width: 5, height: '100%' },
+  cardContent: { flex: 1, padding: 16 },
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1166,22 +1051,9 @@ const styles = StyleSheet.create({
     color: '#dc2626',
     letterSpacing: 0.3,
   },
-  statusRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-  },
-  statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-  },
-  statusText: {
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 0.2,
-  },
-
+  statusRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  statusDot: { width: 6, height: 6, borderRadius: 3 },
+  statusText: { fontSize: 11, fontWeight: '800', letterSpacing: 0.2 },
   amountBadge: {
     flexDirection: 'row',
     alignItems: 'baseline',
@@ -1195,12 +1067,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: -0.3,
   },
-  amountBadgeUnit: {
-    fontSize: 10,
-    fontWeight: '800',
-    opacity: 0.8,
-  },
-
+  amountBadgeUnit: { fontSize: 10, fontWeight: '800', opacity: 0.8 },
   cardStats: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1210,10 +1077,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.05)',
     marginBottom: 12,
   },
-  statItem: {
-    flex: 1,
-    alignItems: 'center',
-  },
+  statItem: { flex: 1, alignItems: 'center' },
   statDivider: {
     width: 1,
     height: 24,
@@ -1226,12 +1090,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
     marginBottom: 3,
   },
-  statValue: {
-    fontSize: 14,
-    fontWeight: '900',
-    letterSpacing: -0.3,
-  },
-
+  statValue: { fontSize: 14, fontWeight: '900', letterSpacing: -0.3 },
   nextSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1240,20 +1099,9 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 10,
   },
-  nextLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    flex: 1,
-  },
-  nextText: {
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  actionsRow: {
-    flexDirection: 'row',
-    gap: 6,
-  },
+  nextLeft: { flexDirection: 'row', alignItems: 'center', gap: 6, flex: 1 },
+  nextText: { fontSize: 12, fontWeight: '600' },
+  actionsRow: { flexDirection: 'row', gap: 6 },
   miniBtn: {
     width: 30,
     height: 30,
@@ -1262,7 +1110,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  /* ============ EMPTY ============ */
+  /* EMPTY */
   emptyContainer: {
     alignItems: 'center',
     marginTop: 50,
@@ -1314,32 +1162,23 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
 
-  /* ============ CREATE SCREEN ============ */
+  /* CREATE SCREEN */
   createHeader: {
     paddingTop:
-      Platform.OS === 'android'
-        ? (StatusBar.currentHeight || 0) + 16
-        : 56,
+      Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 16 : 56,
     paddingBottom: 14,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  createHeaderCenter: {
-    flex: 1,
-    alignItems: 'center',
-  },
+  createHeaderCenter: { flex: 1, alignItems: 'center' },
   createHeaderTitle: {
     fontSize: 16,
     fontWeight: '900',
     letterSpacing: -0.3,
   },
-  createHeaderStep: {
-    fontSize: 11,
-    fontWeight: '600',
-    marginTop: 2,
-  },
+  createHeaderStep: { fontSize: 11, fontWeight: '600', marginTop: 2 },
   iconBtn: {
     width: 40,
     height: 40,
@@ -1348,11 +1187,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  /* ============ PROGRESS ============ */
-  progressWrapper: {
-    paddingHorizontal: 20,
-    marginBottom: 22,
-  },
+  /* PROGRESS */
+  progressWrapper: { paddingHorizontal: 20, marginBottom: 22 },
   progressTrack: {
     height: 4,
     borderRadius: 2,
@@ -1368,11 +1204,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  progressStep: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
+  progressStep: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   progressDot: {
     width: 16,
     height: 16,
@@ -1380,19 +1212,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  progressStepLabel: {
-    fontSize: 11,
-    letterSpacing: -0.2,
-  },
+  progressStepLabel: { fontSize: 11, letterSpacing: -0.2 },
 
-  /* ============ FORM ============ */
-  formContainer: {
-    paddingHorizontal: 20,
-    paddingBottom: 40,
-  },
-  stepHeader: {
-    marginBottom: 24,
-  },
+  /* FORM */
+  formContainer: { paddingHorizontal: 20, paddingBottom: 40 },
+  stepHeader: { marginBottom: 24 },
   stepIconBox: {
     width: 44,
     height: 44,
@@ -1407,12 +1231,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.5,
     marginBottom: 6,
   },
-  stepSubtitle: {
-    fontSize: 12,
-    fontWeight: '500',
-    lineHeight: 18,
-  },
-
+  stepSubtitle: { fontSize: 12, fontWeight: '500', lineHeight: 18 },
   inputLabel: {
     fontSize: 10,
     fontWeight: '800',
@@ -1429,24 +1248,35 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 16,
   },
-  inputWithBtn: {
+
+  /* INPUT SIMPLE MEMBRES */
+  simpleInputRow: {
     flexDirection: 'row',
-    alignItems: 'stretch',
+    alignItems: 'center',
     gap: 8,
     marginBottom: 16,
   },
-  inputFlex: {
+  simpleInput: {
     flex: 1,
-    marginBottom: 0,
+    borderWidth: 1.5,
+    borderRadius: 14,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    fontSize: 15,
+    fontWeight: '600',
   },
-  addMemberBtnWrapper: {
+  simpleAddBtn: {
     borderRadius: 14,
     overflow: 'hidden',
+    shadowColor: '#006233',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
   },
-  addMemberBtn: {
-    width: 50,
-    height: '100%',
-    minHeight: 50,
+  simpleAddBtnInner: {
+    width: 52,
+    height: 52,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1465,35 +1295,26 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 10,
   },
-  memberCountText: {
-    fontSize: 11,
-    fontWeight: '900',
-    letterSpacing: 0.2,
-  },
-  memberPotPreview: {
-    fontSize: 11,
-    fontWeight: '700',
-  },
+  memberCountText: { fontSize: 11, fontWeight: '900', letterSpacing: 0.2 },
+  memberPotPreview: { fontSize: 11, fontWeight: '700' },
 
-  membersList: {
-    padding: 8,
-    borderRadius: 16,
+  /* LISTE MEMBRES */
+  membersListWrapper: {
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 1,
   },
   memberItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 12,
-    marginVertical: 3,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 14,
     borderLeftWidth: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 1,
   },
   memberItemLeft: {
     flexDirection: 'row',
@@ -1528,6 +1349,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  /* BOUTONS */
   primaryBtnWrapper: {
     borderRadius: 14,
     overflow: 'hidden',
@@ -1538,9 +1360,7 @@ const styles = StyleSheet.create({
     elevation: 6,
     marginTop: 8,
   },
-  primaryBtnFlex: {
-    flex: 1.4,
-  },
+  primaryBtnFlex: { flex: 1.4 },
   primaryBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1555,12 +1375,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0.3,
   },
-
-  stepButtonsRow: {
-    flexDirection: 'row',
-    gap: 10,
-    marginTop: 12,
-  },
+  stepButtonsRow: { flexDirection: 'row', gap: 10, marginTop: 12 },
   secondaryBtn: {
     flex: 1,
     flexDirection: 'row',
@@ -1571,9 +1386,5 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 1.5,
   },
-  secondaryBtnText: {
-    fontSize: 14,
-    fontWeight: '800',
-    letterSpacing: 0.3,
-  },
+  secondaryBtnText: { fontSize: 14, fontWeight: '800', letterSpacing: 0.3 },
 });

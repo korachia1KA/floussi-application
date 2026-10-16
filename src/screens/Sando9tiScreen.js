@@ -12,6 +12,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   Animated,
+  FlatList,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
@@ -202,7 +203,6 @@ export default function Sando9tiScreen({ navigation }) {
           },
         ]}
       >
-        {/* Header */}
         <View style={styles.goalHeader}>
           <View style={styles.goalHeaderLeft}>
             <View
@@ -228,9 +228,7 @@ export default function Sando9tiScreen({ navigation }) {
               >
                 {goal.name}
               </Text>
-              <Text
-                style={[styles.goalSubtitle, { color: theme.subText }]}
-              >
+              <Text style={[styles.goalSubtitle, { color: theme.subText }]}>
                 {isCompleted
                   ? '🎉 Objectif atteint !'
                   : `Reste ${remaining.toLocaleString('fr-FR')} DH`}
@@ -248,36 +246,23 @@ export default function Sando9tiScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        {/* Montants */}
         <View style={styles.amountRow}>
-          <Text
-            style={[styles.savedAmount, { color: theme.text }]}
-          >
+          <Text style={[styles.savedAmount, { color: theme.text }]}>
             {goal.saved.toLocaleString('fr-FR')}
             <Text style={styles.amountUnit}> DH</Text>
           </Text>
-          <Text
-            style={[styles.targetAmount, { color: theme.subText }]}
-          >
+          <Text style={[styles.targetAmount, { color: theme.subText }]}>
             / {goal.target.toLocaleString('fr-FR')} DH
           </Text>
         </View>
 
-        {/* Barre de progression */}
-        <View
-          style={[
-            styles.progressTrack,
-            { backgroundColor: theme.bg },
-          ]}
-        >
+        <View style={[styles.progressTrack, { backgroundColor: theme.bg }]}>
           <View
             style={[
               styles.progressFill,
               {
                 width: `${percentage}%`,
-                backgroundColor: isCompleted
-                  ? COLORS.primary
-                  : '#fbbf24',
+                backgroundColor: isCompleted ? COLORS.primary : '#fbbf24',
               },
             ]}
           >
@@ -285,7 +270,6 @@ export default function Sando9tiScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Footer : pourcentage + actions */}
         <View style={styles.goalFooter}>
           <View
             style={[
@@ -300,9 +284,7 @@ export default function Sando9tiScreen({ navigation }) {
             <Text
               style={[
                 styles.percentText,
-                {
-                  color: isCompleted ? COLORS.primary : '#f59e0b',
-                },
+                { color: isCompleted ? COLORS.primary : '#f59e0b' },
               ]}
             >
               {percentage.toFixed(0)}%
@@ -313,19 +295,10 @@ export default function Sando9tiScreen({ navigation }) {
             <TouchableOpacity
               onPress={() => openModal('deposit', goal)}
               activeOpacity={0.8}
-              style={[
-                styles.miniActionBtn,
-                { backgroundColor: '#10b98115' },
-              ]}
+              style={[styles.miniActionBtn, { backgroundColor: '#10b98115' }]}
             >
-              <ArrowUpCircle
-                size={14}
-                color="#10b981"
-                strokeWidth={2.6}
-              />
-              <Text
-                style={[styles.miniActionText, { color: '#10b981' }]}
-              >
+              <ArrowUpCircle size={14} color="#10b981" strokeWidth={2.6} />
+              <Text style={[styles.miniActionText, { color: '#10b981' }]}>
                 Déposer
               </Text>
             </TouchableOpacity>
@@ -333,19 +306,10 @@ export default function Sando9tiScreen({ navigation }) {
             <TouchableOpacity
               onPress={() => openModal('withdraw', goal)}
               activeOpacity={0.8}
-              style={[
-                styles.miniActionBtn,
-                { backgroundColor: '#ef444415' },
-              ]}
+              style={[styles.miniActionBtn, { backgroundColor: '#ef444415' }]}
             >
-              <ArrowDownCircle
-                size={14}
-                color="#ef4444"
-                strokeWidth={2.6}
-              />
-              <Text
-                style={[styles.miniActionText, { color: '#ef4444' }]}
-              >
+              <ArrowDownCircle size={14} color="#ef4444" strokeWidth={2.6} />
+              <Text style={[styles.miniActionText, { color: '#ef4444' }]}>
                 Retirer
               </Text>
             </TouchableOpacity>
@@ -373,21 +337,19 @@ export default function Sando9tiScreen({ navigation }) {
             transform: [{ translateY: slideAnim }],
           }}
         >
-          {/* ============ HEADER ============ */}
+          {/* HEADER */}
           <View style={styles.header}>
             <View>
               <Text style={[styles.headerTitle, { color: theme.text }]}>
                 Sando9ti
               </Text>
-              <Text
-                style={[styles.headerSubtitle, { color: theme.subText }]}
-              >
+              <Text style={[styles.headerSubtitle, { color: theme.subText }]}>
                 Tirelire et objectifs d'épargne
               </Text>
             </View>
           </View>
 
-          {/* ============ HERO CARD ============ */}
+          {/* HERO */}
           <Animated.View
             style={[
               styles.heroCardWrapper,
@@ -400,7 +362,6 @@ export default function Sando9tiScreen({ navigation }) {
               end={{ x: 1, y: 1 }}
               style={styles.heroCard}
             >
-              {/* Motifs */}
               <View style={styles.heroDecor1} />
               <View style={styles.heroDecor2} />
 
@@ -420,7 +381,6 @@ export default function Sando9tiScreen({ navigation }) {
                 <Text style={styles.heroCurrency}> DH</Text>
               </Text>
 
-              {/* Progression globale */}
               {totalTarget > 0 && (
                 <View style={styles.heroProgressWrapper}>
                   <View style={styles.heroProgressHeader}>
@@ -446,7 +406,7 @@ export default function Sando9tiScreen({ navigation }) {
             </LinearGradient>
           </Animated.View>
 
-          {/* ============ ACTIONS ============ */}
+          {/* ACTIONS */}
           <View style={styles.actionsRow}>
             <TouchableOpacity
               onPress={() => openModal('deposit')}
@@ -459,11 +419,7 @@ export default function Sando9tiScreen({ navigation }) {
                   { backgroundColor: '#10b98120' },
                 ]}
               >
-                <ArrowUpCircle
-                  size={22}
-                  color="#10b981"
-                  strokeWidth={2.4}
-                />
+                <ArrowUpCircle size={22} color="#10b981" strokeWidth={2.4} />
               </View>
               <Text style={[styles.actionLabel, { color: theme.text }]}>
                 Déposer
@@ -481,11 +437,7 @@ export default function Sando9tiScreen({ navigation }) {
                   { backgroundColor: '#ef444420' },
                 ]}
               >
-                <ArrowDownCircle
-                  size={22}
-                  color="#ef4444"
-                  strokeWidth={2.4}
-                />
+                <ArrowDownCircle size={22} color="#ef4444" strokeWidth={2.4} />
               </View>
               <Text style={[styles.actionLabel, { color: theme.text }]}>
                 Retirer
@@ -511,7 +463,7 @@ export default function Sando9tiScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* ============ SECTION OBJECTIFS ============ */}
+          {/* SECTION OBJECTIFS */}
           <View style={styles.sectionHeader}>
             <View style={styles.sectionTitleRow}>
               <Trophy size={16} color={theme.text} strokeWidth={2.4} />
@@ -524,12 +476,7 @@ export default function Sando9tiScreen({ navigation }) {
                   { backgroundColor: COLORS.primary + '20' },
                 ]}
               >
-                <Text
-                  style={[
-                    styles.countBadgeText,
-                    { color: COLORS.primary },
-                  ]}
-                >
+                <Text style={[styles.countBadgeText, { color: COLORS.primary }]}>
                   {goals.length}
                 </Text>
               </View>
@@ -537,9 +484,7 @@ export default function Sando9tiScreen({ navigation }) {
           </View>
 
           {goals.length === 0 ? (
-            <View
-              style={[styles.emptyState, { backgroundColor: theme.card }]}
-            >
+            <View style={[styles.emptyState, { backgroundColor: theme.card }]}>
               <View
                 style={[
                   styles.emptyIconBox,
@@ -551,9 +496,7 @@ export default function Sando9tiScreen({ navigation }) {
               <Text style={[styles.emptyTitle, { color: theme.text }]}>
                 Aucun objectif
               </Text>
-              <Text
-                style={[styles.emptySubtitle, { color: theme.subText }]}
-              >
+              <Text style={[styles.emptySubtitle, { color: theme.subText }]}>
                 Crée ton premier objectif d'épargne et commence à mettre
                 de côté pour tes projets.
               </Text>
@@ -569,9 +512,7 @@ export default function Sando9tiScreen({ navigation }) {
                   style={styles.emptyBtn}
                 >
                   <Target size={16} color="#fff" strokeWidth={2.8} />
-                  <Text style={styles.emptyBtnText}>
-                    Créer un objectif
-                  </Text>
+                  <Text style={styles.emptyBtnText}>Créer un objectif</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </View>
@@ -585,7 +526,7 @@ export default function Sando9tiScreen({ navigation }) {
         </Animated.View>
       </ScrollView>
 
-      {/* ============ MODAL ============ */}
+      {/* MODAL */}
       <Modal
         visible={modalType !== null}
         transparent
@@ -593,14 +534,13 @@ export default function Sando9tiScreen({ navigation }) {
         onRequestClose={closeModal}
       >
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.modalOverlay}
         >
-          <View
-            style={[styles.modalContent, { backgroundColor: theme.card }]}
-          >
+          <View style={[styles.modalContent, { backgroundColor: theme.card }]}>
             <View style={styles.handle} />
 
+            {/* HEADER MODAL */}
             <View style={styles.modalHeader}>
               <View style={styles.modalHeaderLeft}>
                 <View
@@ -619,40 +559,25 @@ export default function Sando9tiScreen({ navigation }) {
                   {modalType === 'create' ? (
                     <Target size={18} color="#3b82f6" strokeWidth={2.4} />
                   ) : modalType === 'deposit' ? (
-                    <ArrowUpCircle
-                      size={18}
-                      color="#10b981"
-                      strokeWidth={2.4}
-                    />
+                    <ArrowUpCircle size={18} color="#10b981" strokeWidth={2.4} />
                   ) : (
-                    <ArrowDownCircle
-                      size={18}
-                      color="#ef4444"
-                      strokeWidth={2.4}
-                    />
+                    <ArrowDownCircle size={18} color="#ef4444" strokeWidth={2.4} />
                   )}
                 </View>
                 <View>
-                  <Text
-                    style={[styles.modalTitle, { color: theme.text }]}
-                  >
+                  <Text style={[styles.modalTitle, { color: theme.text }]}>
                     {modalType === 'create'
                       ? 'Nouvel objectif'
                       : modalType === 'deposit'
                       ? 'Déposer'
                       : 'Retirer'}
                   </Text>
-                  <Text
-                    style={[
-                      styles.modalSubtitle,
-                      { color: theme.subText },
-                    ]}
-                  >
+                  <Text style={[styles.modalSubtitle, { color: theme.subText }]}>
                     {modalType === 'create'
                       ? 'Définis ton objectif'
                       : modalType === 'deposit'
-                      ? 'Ajoute de l’argent à ta tirelire'
-                      : 'Retire de l’argent de ta tirelire'}
+                      ? "Ajoute de l'argent à ta tirelire"
+                      : "Retire de l'argent de ta tirelire"}
                   </Text>
                 </View>
               </View>
@@ -666,261 +591,294 @@ export default function Sando9tiScreen({ navigation }) {
               </TouchableOpacity>
             </View>
 
-            {/* ============ CREATE ============ */}
-            {modalType === 'create' && (
-              <>
-                <Text
-                  style={[styles.inputLabel, { color: theme.subText }]}
-                >
-                  NOM DE L'OBJECTIF
-                </Text>
-                <TextInput
-                  style={[
-                    styles.input,
-                    {
-                      color: theme.text,
-                      backgroundColor: theme.bg,
-                      borderColor:
-                        focusedInput === 'name'
-                          ? COLORS.primary
-                          : theme.track || '#e5e7eb',
-                    },
-                  ]}
-                  value={newGoalName}
-                  onChangeText={setNewGoalName}
-                  placeholder="Ex : Voiture"
-                  placeholderTextColor={theme.subText + '80'}
-                  onFocus={() => setFocusedInput('name')}
-                  onBlur={() => setFocusedInput(null)}
-                />
-
-                <Text
-                  style={[styles.inputLabel, { color: theme.subText }]}
-                >
-                  MONTANT CIBLE (DH)
-                </Text>
-                <TextInput
-                  style={[
-                    styles.input,
-                    {
-                      color: theme.text,
-                      backgroundColor: theme.bg,
-                      borderColor:
-                        focusedInput === 'target'
-                          ? COLORS.primary
-                          : theme.track || '#e5e7eb',
-                    },
-                  ]}
-                  value={newGoalTarget}
-                  onChangeText={setNewGoalTarget}
-                  keyboardType="numeric"
-                  placeholder="Ex : 50 000"
-                  placeholderTextColor={theme.subText + '80'}
-                  onFocus={() => setFocusedInput('target')}
-                  onBlur={() => setFocusedInput(null)}
-                />
-
-                <TouchableOpacity
-                  onPress={handleCreateGoal}
-                  activeOpacity={0.85}
-                  style={styles.confirmBtnWrapper}
-                >
-                  <LinearGradient
-                    colors={['#006233', '#004d25']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={styles.confirmBtn}
-                  >
-                    <CheckCircle2
-                      size={18}
-                      color="#fff"
-                      strokeWidth={2.8}
-                    />
-                    <Text style={styles.confirmBtnText}>Créer</Text>
-                  </LinearGradient>
-                </TouchableOpacity>
-              </>
-            )}
-
-            {/* ============ DEPOSIT / WITHDRAW ============ */}
-            {(modalType === 'deposit' || modalType === 'withdraw') && (
-              <>
-                <Text
-                  style={[styles.inputLabel, { color: theme.subText }]}
-                >
-                  CHOISIR UN OBJECTIF
-                </Text>
-
-                {goals.length === 0 ? (
-                  <Text
-                    style={[
-                      styles.noGoalsText,
-                      { color: theme.subText },
-                    ]}
-                  >
-                    Aucun objectif. Crée-en un d'abord.
+            {/* CONTENU SCROLLABLE */}
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
+              contentContainerStyle={{ paddingBottom: 10 }}
+            >
+              {/* ============ CREATE ============ */}
+              {modalType === 'create' && (
+                <>
+                  <Text style={[styles.inputLabel, { color: theme.subText }]}>
+                    NOM DE L'OBJECTIF
                   </Text>
-                ) : (
-                  <View style={styles.goalSelectorWrapper}>
-                    {goals.map((item) => {
-                      const isSelected = selectedGoal?.id === item.id;
-                      const percent =
-                        item.target > 0
-                          ? (item.saved / item.target) * 100
-                          : 0;
-                      return (
-                        <TouchableOpacity
-                          key={item.id}
-                          onPress={() => setSelectedGoal(item)}
-                          activeOpacity={0.8}
-                          style={[
-                            styles.goalSelectorItem,
-                            {
-                              backgroundColor: isSelected
-                                ? COLORS.primary + '15'
-                                : theme.bg,
-                              borderColor: isSelected
-                                ? COLORS.primary
-                                : theme.track || '#e5e7eb',
-                            },
-                          ]}
-                        >
-                          <View style={styles.goalSelectorLeft}>
-                            <View
-                              style={[
-                                styles.goalSelectorIconBox,
-                                {
-                                  backgroundColor: isSelected
-                                    ? COLORS.primary
-                                    : theme.track + '50',
-                                },
-                              ]}
-                            >
-                              {isSelected && (
-                                <CheckCircle2
-                                  size={14}
-                                  color="#fff"
-                                  strokeWidth={3}
-                                />
-                              )}
-                            </View>
-                            <View style={{ flex: 1 }}>
-                              <Text
-                                style={[
-                                  styles.goalSelectorName,
-                                  {
-                                    color: isSelected
-                                      ? COLORS.primary
-                                      : theme.text,
-                                  },
-                                ]}
-                                numberOfLines={1}
-                              >
-                                {item.name}
-                              </Text>
-                              <Text
-                                style={[
-                                  styles.goalSelectorSub,
-                                  { color: theme.subText },
-                                ]}
-                              >
-                                {item.saved.toLocaleString('fr-FR')} DH
-                                {' · '}
-                                {percent.toFixed(0)}%
-                              </Text>
-                            </View>
-                          </View>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </View>
-                )}
+                  <TextInput
+                    style={[
+                      styles.input,
+                      {
+                        color: theme.text,
+                        backgroundColor: theme.bg,
+                        borderColor:
+                          focusedInput === 'name'
+                            ? COLORS.primary
+                            : theme.track || '#e5e7eb',
+                      },
+                    ]}
+                    value={newGoalName}
+                    onChangeText={setNewGoalName}
+                    placeholder="Ex : Voiture"
+                    placeholderTextColor={theme.subText + '80'}
+                    onFocus={() => setFocusedInput('name')}
+                    onBlur={() => setFocusedInput(null)}
+                  />
 
-                {selectedGoal && (
-                  <>
-                    <Text
-                      style={[
-                        styles.inputLabel,
-                        { color: theme.subText, marginTop: 8 },
-                      ]}
+                  <Text style={[styles.inputLabel, { color: theme.subText }]}>
+                    MONTANT CIBLE (DH)
+                  </Text>
+                  <TextInput
+                    style={[
+                      styles.input,
+                      {
+                        color: theme.text,
+                        backgroundColor: theme.bg,
+                        borderColor:
+                          focusedInput === 'target'
+                            ? COLORS.primary
+                            : theme.track || '#e5e7eb',
+                      },
+                    ]}
+                    value={newGoalTarget}
+                    onChangeText={setNewGoalTarget}
+                    keyboardType="numeric"
+                    placeholder="Ex : 50 000"
+                    placeholderTextColor={theme.subText + '80'}
+                    onFocus={() => setFocusedInput('target')}
+                    onBlur={() => setFocusedInput(null)}
+                  />
+
+                  <TouchableOpacity
+                    onPress={handleCreateGoal}
+                    activeOpacity={0.85}
+                    style={styles.confirmBtnWrapper}
+                  >
+                    <LinearGradient
+                      colors={['#006233', '#004d25']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      style={styles.confirmBtn}
                     >
-                      MONTANT (DH)
-                    </Text>
-                    <TextInput
-                      style={[
-                        styles.input,
-                        styles.amountInput,
-                        {
-                          color:
-                            modalType === 'deposit'
-                              ? '#10b981'
-                              : '#ef4444',
-                          backgroundColor: theme.bg,
-                          borderColor:
-                            focusedInput === 'amount'
-                              ? modalType === 'deposit'
-                                ? '#10b981'
-                                : '#ef4444'
-                              : theme.track || '#e5e7eb',
-                        },
-                      ]}
-                      value={amountInput}
-                      onChangeText={setAmountInput}
-                      keyboardType="numeric"
-                      placeholder="0"
-                      placeholderTextColor={theme.subText + '80'}
-                      onFocus={() => setFocusedInput('amount')}
-                      onBlur={() => setFocusedInput(null)}
-                    />
+                      <CheckCircle2 size={18} color="#fff" strokeWidth={2.8} />
+                      <Text style={styles.confirmBtnText}>Créer</Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                </>
+              )}
 
-                    {selectedGoal && (
-                      <Text
+              {/* ============ DEPOSIT / WITHDRAW ============ */}
+              {(modalType === 'deposit' || modalType === 'withdraw') && (
+                <>
+                  {/* Input simple pour le montant (si un objectif est déjà sélectionné) */}
+                  {selectedGoal && (
+                    <>
+                      <View
                         style={[
-                          styles.hint,
-                          { color: theme.subText },
+                          styles.selectedGoalBanner,
+                          { backgroundColor: COLORS.primary + '10' },
                         ]}
                       >
-                        {modalType === 'deposit'
-                          ? `Solde actuel : ${selectedGoal.saved.toLocaleString('fr-FR')} DH`
-                          : `Disponible : ${selectedGoal.saved.toLocaleString('fr-FR')} DH`}
-                      </Text>
-                    )}
-
-                    <TouchableOpacity
-                      onPress={
-                        modalType === 'deposit'
-                          ? handleDeposit
-                          : handleWithdraw
-                      }
-                      activeOpacity={0.85}
-                      style={styles.confirmBtnWrapper}
-                    >
-                      <LinearGradient
-                        colors={
-                          modalType === 'deposit'
-                            ? ['#10b981', '#059669']
-                            : ['#ef4444', '#dc2626']
-                        }
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={styles.confirmBtn}
-                      >
-                        <CheckCircle2
-                          size={18}
-                          color="#fff"
-                          strokeWidth={2.8}
-                        />
-                        <Text style={styles.confirmBtnText}>
-                          {modalType === 'deposit'
-                            ? 'Déposer'
-                            : 'Retirer'}
+                        <View style={styles.selectedGoalBannerLeft}>
+                          <View
+                            style={[
+                              styles.selectedGoalDot,
+                              { backgroundColor: COLORS.primary },
+                            ]}
+                          />
+                          <Text
+                            style={[
+                              styles.selectedGoalText,
+                              { color: COLORS.primary },
+                            ]}
+                            numberOfLines={1}
+                          >
+                            {selectedGoal.name}
+                          </Text>
+                        </View>
+                        <Text
+                          style={[
+                            styles.selectedGoalAmount,
+                            { color: COLORS.primary },
+                          ]}
+                        >
+                          {selectedGoal.saved.toLocaleString('fr-FR')} DH
                         </Text>
-                      </LinearGradient>
-                    </TouchableOpacity>
-                  </>
-                )}
-              </>
-            )}
+                      </View>
+
+                      <Text
+                        style={[
+                          styles.inputLabel,
+                          { color: theme.subText, marginTop: 8 },
+                        ]}
+                      >
+                        MONTANT (DH)
+                      </Text>
+                      <TextInput
+                        style={[
+                          styles.input,
+                          styles.amountInput,
+                          {
+                            color:
+                              modalType === 'deposit' ? '#10b981' : '#ef4444',
+                            backgroundColor: theme.bg,
+                            borderColor:
+                              focusedInput === 'amount'
+                                ? modalType === 'deposit'
+                                  ? '#10b981'
+                                  : '#ef4444'
+                                : theme.track || '#e5e7eb',
+                          },
+                        ]}
+                        value={amountInput}
+                        onChangeText={setAmountInput}
+                        keyboardType="numeric"
+                        placeholder="0"
+                        placeholderTextColor={theme.subText + '80'}
+                        onFocus={() => setFocusedInput('amount')}
+                        onBlur={() => setFocusedInput(null)}
+                      />
+
+                      <Text style={[styles.hint, { color: theme.subText }]}>
+                        {modalType === 'deposit'
+                          ? `Solde actuel : ${selectedGoal.saved.toLocaleString(
+                              'fr-FR'
+                            )} DH`
+                          : `Disponible : ${selectedGoal.saved.toLocaleString(
+                              'fr-FR'
+                            )} DH`}
+                      </Text>
+
+                      <TouchableOpacity
+                        onPress={
+                          modalType === 'deposit'
+                            ? handleDeposit
+                            : handleWithdraw
+                        }
+                        activeOpacity={0.85}
+                        style={styles.confirmBtnWrapper}
+                      >
+                        <LinearGradient
+                          colors={
+                            modalType === 'deposit'
+                              ? ['#10b981', '#059669']
+                              : ['#ef4444', '#dc2626']
+                          }
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 0 }}
+                          style={styles.confirmBtn}
+                        >
+                          <CheckCircle2
+                            size={18}
+                            color="#fff"
+                            strokeWidth={2.8}
+                          />
+                          <Text style={styles.confirmBtnText}>
+                            {modalType === 'deposit' ? 'Déposer' : 'Retirer'}
+                          </Text>
+                        </LinearGradient>
+                      </TouchableOpacity>
+                    </>
+                  )}
+
+                  {/* LISTE DES OBJECTIFS EN FLATLIST */}
+                  <Text
+                    style={[
+                      styles.inputLabel,
+                      { color: theme.subText, marginTop: 4 },
+                    ]}
+                  >
+                    {selectedGoal ? 'CHANGER D’OBJECTIF' : 'CHOISIR UN OBJECTIF'}
+                  </Text>
+
+                  {goals.length === 0 ? (
+                    <Text
+                      style={[styles.noGoalsText, { color: theme.subText }]}
+                    >
+                      Aucun objectif. Crée-en un d'abord.
+                    </Text>
+                  ) : (
+                    <FlatList
+                      data={goals}
+                      keyExtractor={(item) => item.id}
+                      scrollEnabled={false}
+                      showsVerticalScrollIndicator={false}
+                      ItemSeparatorComponent={() => (
+                        <View style={{ height: 6 }} />
+                      )}
+                      renderItem={({ item }) => {
+                        const isSelected = selectedGoal?.id === item.id;
+                        const percent =
+                          item.target > 0
+                            ? (item.saved / item.target) * 100
+                            : 0;
+                        return (
+                          <TouchableOpacity
+                            onPress={() => setSelectedGoal(item)}
+                            activeOpacity={0.8}
+                            style={[
+                              styles.simpleGoalItem,
+                              {
+                                backgroundColor: isSelected
+                                  ? COLORS.primary + '10'
+                                  : theme.bg,
+                                borderColor: isSelected
+                                  ? COLORS.primary
+                                  : theme.track || '#e5e7eb',
+                              },
+                            ]}
+                          >
+                            <View style={styles.simpleGoalLeft}>
+                              <View
+                                style={[
+                                  styles.simpleGoalDot,
+                                  {
+                                    backgroundColor: isSelected
+                                      ? COLORS.primary
+                                      : theme.track || '#e5e7eb',
+                                  },
+                                ]}
+                              >
+                                {isSelected && (
+                                  <CheckCircle2
+                                    size={12}
+                                    color="#fff"
+                                    strokeWidth={3}
+                                  />
+                                )}
+                              </View>
+                              <View style={{ flex: 1 }}>
+                                <Text
+                                  style={[
+                                    styles.simpleGoalName,
+                                    {
+                                      color: isSelected
+                                        ? COLORS.primary
+                                        : theme.text,
+                                    },
+                                  ]}
+                                  numberOfLines={1}
+                                >
+                                  {item.name}
+                                </Text>
+                                <Text
+                                  style={[
+                                    styles.simpleGoalSub,
+                                    { color: theme.subText },
+                                  ]}
+                                >
+                                  {item.saved.toLocaleString('fr-FR')} DH
+                                  {' · '}
+                                  {percent.toFixed(0)}%
+                                </Text>
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+                        );
+                      }}
+                    />
+                  )}
+                </>
+              )}
+            </ScrollView>
           </View>
         </KeyboardAvoidingView>
       </Modal>
@@ -932,26 +890,16 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   scrollContent: {
     paddingTop:
-      Platform.OS === 'android'
-        ? (StatusBar.currentHeight || 0) + 20
-        : 60,
+      Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 20 : 60,
     paddingHorizontal: 20,
   },
 
-  /* ============ HEADER ============ */
+  /* HEADER */
   header: { marginBottom: 20 },
-  headerTitle: {
-    fontSize: 26,
-    fontWeight: '900',
-    letterSpacing: -0.8,
-  },
-  headerSubtitle: {
-    fontSize: 12,
-    fontWeight: '600',
-    marginTop: 3,
-  },
+  headerTitle: { fontSize: 26, fontWeight: '900', letterSpacing: -0.8 },
+  headerSubtitle: { fontSize: 12, fontWeight: '600', marginTop: 3 },
 
-  /* ============ HERO ============ */
+  /* HERO */
   heroCardWrapper: {
     borderRadius: 22,
     overflow: 'hidden',
@@ -986,7 +934,6 @@ const styles = StyleSheet.create({
     borderRadius: 70,
     backgroundColor: 'rgba(255,255,255,0.04)',
   },
-
   heroTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1020,7 +967,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 1,
   },
-
   heroLabel: {
     color: 'rgba(255,255,255,0.75)',
     fontSize: 11,
@@ -1044,7 +990,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: 'rgba(255,255,255,0.85)',
   },
-
   heroProgressWrapper: { marginTop: 4 },
   heroProgressHeader: {
     flexDirection: 'row',
@@ -1084,7 +1029,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
 
-  /* ============ ACTIONS ============ */
+  /* ACTIONS */
   actionsRow: {
     flexDirection: 'row',
     gap: 10,
@@ -1115,7 +1060,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.2,
   },
 
-  /* ============ SECTION ============ */
+  /* SECTION */
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1142,7 +1087,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
 
-  /* ============ CARTE OBJECTIF ============ */
+  /* CARTE OBJECTIF */
   goalCard: {
     padding: 16,
     borderRadius: 18,
@@ -1190,7 +1135,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#ef444415',
   },
-
   amountRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
@@ -1211,7 +1155,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '700',
   },
-
   progressTrack: {
     height: 8,
     borderRadius: 4,
@@ -1231,7 +1174,6 @@ const styles = StyleSheet.create({
     height: '40%',
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
-
   goalFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1240,4 +1182,275 @@ const styles = StyleSheet.create({
   percentBadge: {
     paddingHorizontal: 9,
     paddingVertical: 4,
-    borderRadius: 8
+    borderRadius: 8,
+  },
+  percentText: {
+    fontSize: 12,
+    fontWeight: '900',
+    letterSpacing: -0.2,
+  },
+  goalActions: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  miniActionBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    borderRadius: 10,
+  },
+  miniActionText: {
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: -0.2,
+  },
+
+  /* EMPTY */
+  emptyState: {
+    padding: 28,
+    borderRadius: 22,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 14,
+    elevation: 3,
+  },
+  emptyIconBox: {
+    width: 72,
+    height: 72,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  emptyTitle: {
+    fontSize: 17,
+    fontWeight: '900',
+    letterSpacing: -0.4,
+    marginBottom: 8,
+  },
+  emptySubtitle: {
+    fontSize: 12,
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 18,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  emptyBtnWrapper: {
+    borderRadius: 14,
+    overflow: 'hidden',
+    shadowColor: '#006233',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+  emptyBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 13,
+    paddingHorizontal: 22,
+    borderRadius: 14,
+  },
+  emptyBtnText: {
+    color: '#fff',
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 0.3,
+  },
+
+  /* MODAL */
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    padding: 22,
+    paddingBottom: 34,
+    maxHeight: '90%',
+    minHeight: 300,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 20,
+  },
+  handle: {
+    width: 42,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: '#e5e7eb',
+    alignSelf: 'center',
+    marginBottom: 18,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 22,
+  },
+  modalHeaderLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    flex: 1,
+  },
+  modalIconBox: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: '900',
+    letterSpacing: -0.4,
+  },
+  modalSubtitle: {
+    fontSize: 11,
+    fontWeight: '600',
+    marginTop: 2,
+  },
+  modalCloseBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 11,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.05)',
+  },
+
+  /* INPUTS */
+  inputLabel: {
+    fontSize: 10,
+    fontWeight: '800',
+    letterSpacing: 1,
+    marginBottom: 7,
+    marginTop: 4,
+  },
+  input: {
+    borderWidth: 1.5,
+    borderRadius: 14,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    fontSize: 15,
+    fontWeight: '700',
+    marginBottom: 14,
+  },
+  amountInput: {
+    fontSize: 24,
+    fontWeight: '900',
+    letterSpacing: -0.6,
+    textAlign: 'center',
+    paddingVertical: 16,
+  },
+  hint: {
+    fontSize: 11,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 16,
+    marginTop: -6,
+  },
+  noGoalsText: {
+    fontSize: 13,
+    fontWeight: '600',
+    textAlign: 'center',
+    paddingVertical: 20,
+  },
+
+  /* SELECTED GOAL BANNER */
+  selectedGoalBanner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 12,
+  },
+  selectedGoalBannerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flex: 1,
+  },
+  selectedGoalDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  selectedGoalText: {
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: -0.2,
+  },
+  selectedGoalAmount: {
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: -0.2,
+  },
+
+  /* SIMPLE GOAL LIST */
+  simpleGoalItem: {
+    padding: 12,
+    borderRadius: 14,
+    borderWidth: 1.5,
+  },
+  simpleGoalLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  simpleGoalDot: {
+    width: 24,
+    height: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  simpleGoalName: {
+    fontSize: 14,
+    fontWeight: '900',
+    letterSpacing: -0.2,
+  },
+  simpleGoalSub: {
+    fontSize: 11,
+    fontWeight: '600',
+    marginTop: 2,
+  },
+
+  /* CONFIRM BUTTON */
+  confirmBtnWrapper: {
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginTop: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+  confirmBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 15,
+    borderRadius: 14,
+    minHeight: 52,
+  },
+  confirmBtnText: {
+    color: '#fff',
+    fontSize: 15,
+    fontWeight: '900',
+    letterSpacing: 0.3,
+  },
+});
