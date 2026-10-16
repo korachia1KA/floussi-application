@@ -4,13 +4,13 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 // TA CONFIG (Remplace par ta vraie clé API si besoin, celle-ci vient de tes captures)
 const firebaseConfig = {
-  apiKey: "AIzaSyCDRbfUkBigPO9RFeEnjXn3NNcAgIKrJPA",
+  apiKey: "votre key",
   authDomain: "floussi-app-31fe2.firebaseapp.com",
   projectId: "floussi-app-31fe2",
   storageBucket: "floussi-app-31fe2.firebasestorage.app",
   messagingSenderId: "281959033196",
-  appId: "1:281959033196:web:9915dcbdb8f8a2a70eeb49",
-  measurementId: "G-58E90DDXKF"
+  appId: "appid",
+  measurementId: "votre measurementId"
 };
 
 let app;
