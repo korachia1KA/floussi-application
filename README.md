@@ -1,94 +1,95 @@
-# 💰 Floussi - Application de Gestion de Budget Marocaine
+# 🪙 Floussi, gérez votre budget à la marocaine
 
-**Floussi** est une solution mobile complète conçue pour simplifier la gestion financière quotidienne au Maroc. Elle combine un suivi budgétaire moderne avec des pratiques culturelles locales comme la **Daret** (Tontine) et la **Sando9ti** (Tirelire).
-
----
-
-## 🌟 Fonctionnalités Détaillées
-
-### 1. 🔐 Authentification & Sécurité
-* **Connexion / Inscription :** Sécurisée via Firebase Authentication.
-* **Mot de passe oublié :** Envoi d'email de réinitialisation automatique.
-* **Sécurité :** Les données sensibles sont protégées.
-
-### 2. 💸 Gestion de Budget (Cœur de l'appli)
-* **Suivi en temps réel :** Calcul automatique du "Solde Restant" (Revenus - Dépenses).
-* **Ajout rapide :** Interface type "Calculatrice" pour ajouter une dépense en 2 secondes.
-* **Catégorisation :** Icônes intelligentes (Nourriture, Transport, Factures...).
-* **Historique :** Liste des dernières opérations avec indicateurs visuels (Flèches Verte/Rouge).
-
-### 3. 🤝 Module "Daret" (Gestion de Tontine)
-* **Création personnalisée :** Définition du montant, du nombre de membres et de la fréquence.
-* **Suivi des tours :** Visualisation claire de qui doit recevoir l'argent ce mois-ci.
-* **Logique comptable :**
-    * *Paiement :* Déduit automatiquement la cotisation du solde principal.
-    * *Réception :* Ajoute automatiquement le "Pot" total au solde principal.
-* **États :** Possibilité de mettre une Daret en pause.
-
-### 4. 🐷 Module "Sando9ti" (Épargne & Objectifs)
-* **Objectifs multiples :** Créer des cagnottes virtuelles (ex: "Voyage", "PC", "Urgence").
-* **Barres de progression :** Visualisation graphique de l'avancement et couleurs dynamiques (Jaune/Vert).
-* **Opérations :** Déposer ou Retirer de l'argent d'un objectif (connecté au solde principal).
-
-### 5. 📊 Statistiques & Analyse
-* **Visualisation :** Graphiques (Camembert) pour comprendre la répartition des dépenses.
-* **Détails par catégorie :** Voir exactement combien a été dépensé pour chaque poste.
-
-### 6. ⚙️ Outils & Personnalisation
-* **Mode Sombre (Dark Mode) :** Interface entièrement adaptative (Noir/Vert) pour le confort visuel.
-* **Devises en temps réel :** Affichage des taux de change (Euro/Dollar vers Dirham) via API.
-* **Profil Utilisateur :**
-    * Ajout de photo de profil (Stockage local).
-    * Modification du Nom/Mot de passe.
-* **Export & Rappels :** Génération de rapports PDF et notifications de rappel quotidien.
-* **Zone de Danger :** Possibilité de réinitialiser toutes les données.
+**Floussi** est une application mobile qui simplifie le suivi des finances personnelles au Maroc. Elle réunit un outil de budget moderne et deux pratiques d'épargne bien de chez nous : la **Daret** (tontine) et la **Sando9ti** (tirelire).
 
 ---
 
-## 🛠️ Stack Technique
+## ✨ Fonctionnalités
 
-* **Framework :** React Native (Expo SDK 51).
-* **Langage :** JavaScript (ES6+).
-* **Backend (Auth) :** Firebase Authentication.
-* **Base de Données Locale :** `@react-native-async-storage` (Architecture Hybride Offline-First).
-* **API Externe :** Frankfurter API (Taux de change).
-* **UI/UX :**
-    * `lucide-react-native` (Icônes vectorielles).
-    * `expo-linear-gradient` (Design).
-    * `expo-image-picker` (Galerie photo).
+### 🔑 Compte et sécurité
+- Inscription et connexion via Firebase Authentication
+- Réinitialisation du mot de passe par e-mail
+- Données utilisateur protégées par l'authentification
+
+### 🧾 Gestion du budget
+- **Solde en temps réel** : revenus moins dépenses, calculé automatiquement
+- **Saisie express** : une interface de type calculatrice pour noter une dépense en quelques secondes
+- **Catégories** : alimentation, transport, factures, etc., avec des icônes dédiées
+- **Historique** : liste des dernières opérations, avec flèches verte (revenu) et rouge (dépense)
+
+### 🔄 Daret (tontine)
+- **Création sur mesure** : montant, nombre de participants et fréquence au choix
+- **Suivi des tours** : on voit clairement qui reçoit le pot ce mois-ci
+- **Comptabilité automatique** :
+  - *Cotisation* : le montant est déduit du solde principal
+  - *Réception* : le pot total est ajouté au solde principal
+- **Pause** : une Daret peut être suspendue à tout moment
+
+### 🏺 Sando9ti (épargne)
+- **Plusieurs objectifs** : voyage, ordinateur, fonds d'urgence, etc.
+- **Progression visuelle** : barres d'avancement dont la couleur évolue (jaune puis vert)
+- **Dépôts et retraits** : chaque opération est reliée au solde principal
+
+### 📈 Statistiques
+- Graphique en camembert de la répartition des dépenses
+- Détail des montants dépensés par catégorie
+
+### 🛠️ Outils et personnalisation
+- **Mode sombre** adapté à toute l'interface
+- **Taux de change en direct** : euro et dollar face au dirham, via l'API Frankfurter
+- **Profil** : photo (stockée sur l'appareil), modification du nom et du mot de passe
+- **Export PDF** des transactions et **rappel quotidien** par notification
+- **Réinitialisation** complète des données depuis la zone de danger
+
+---
+
+## 🧰 Technologies
+
+| Domaine | Outil |
+|---|---|
+| Framework | React Native avec Expo (SDK 57) |
+| Langage | JavaScript (ES6+) |
+| Navigation | React Navigation |
+| Authentification | Firebase Authentication |
+| Stockage local | AsyncStorage (approche *offline-first*) |
+| API externe | Frankfurter (taux de change) |
+| Interface | lucide-react-native, expo-linear-gradient, expo-image-picker |
+| Export | expo-print, expo-sharing |
 
 ---
 
-## 📦 Installation & Démarrage
+## 🚀 Installation
 
-1.  **Cloner le projet :**
-    ```bash
-    git clone [https://github.com/ouissalhfd/floussi-app.git](https://github.com/ouissalhfd/floussi-app.git)
-    cd floussi-app
-    ```
+1. **Cloner le dépôt**
+```bash
+   git clone https://github.com/korachia1KA/floussi-application.git
+   cd floussi-application
+```
 
-2.  **Installer les dépendances :**
-    ```bash
-    npm install
-    ```
+2. **Installer les dépendances**
+```bash
+   npm install
+```
 
-3.  **Lancer l'application :**
-    ```bash
-    npx expo start -c
-    ```
+3. **Lancer le projet**
+```bash
+   npx expo start -c
+```
 
-4.  **Tester :**
-    * Scannez le QR Code avec l'application **Expo Go** (Android) ou l'appareil photo (iOS).
+4. **Tester l'application**
+   - **Téléphone** : scannez le QR code avec **Expo Go** (version SDK 57 requise)
+   - **Navigateur** : appuyez sur `w` dans le terminal
+
+> ℹ️ Les notifications de rappel ne fonctionnent pas dans Expo Go. Pour les tester, il faut un build de développement.
+
+---
+
+## 👩‍💻 Équipe
+
+- **Haffad Ouissal**
+- **Sadoq Aya**
+- **Zarouil Ghita**
 
 ---
 
-## 👥 Auteurs du Projet
-
-Ce projet a été conçu et développé par :
-
-* **Haffad Ouissal**
-* **Sadoq Aya**
-* **Zarouil Ghita**
-
----
-*Projet Académique - 2025*
+🎓 *Projet académique, 2025*
