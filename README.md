@@ -84,11 +84,7 @@
 
 ---
 
-## 👩‍💻 Équipe
 
-- **Haffad Ouissal**
-- **Sadoq Aya**
-- **Zarouil Ghita**
 
 ---
 
